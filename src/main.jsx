@@ -9,7 +9,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
   <React.StrictMode>
     <ResultCP>
-     <BrowserRouter>
+     <BrowserRouter basename='/Google-clone'>
     <App />
     </BrowserRouter>
     </ResultCP>

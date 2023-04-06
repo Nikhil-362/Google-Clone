@@ -1,6 +1,7 @@
 {
   "name": "google",
-  "private": true,
+  "hompage":"https://nikhil-362.github.io/Google-clone",
+  "private": false,
   "version": "0.0.0",
   "type": "module",
   "scripts": {

@@ -7,17 +7,14 @@ function Nav() {
   return (
     <div>
       <Routes>
-      {/* <Route path="/" redirect={<Result/>} /> */}
-
-      <Route
-        path="/"
+  
+      
+        <Route
+        path="/Google-clone"
         element={<Navigate to="/search"/>} />
       
         <Route path="/search" element={<Result/>}/>
         
-        {/* <Route path="/images" element={<Result/>}/>
-        <Route path="/news" element={<Result/>}/>
-        <Route path="/videos" element={<Result/>}/> */}
         
      
       </Routes>
