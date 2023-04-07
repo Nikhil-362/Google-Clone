@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Searchpage from './Searchpage';
 import { Loading } from './Loading';
+import { BiSearch } from 'react-icons/bi';
+
 import { StateContext } from '../Context/ResultCP';
 
 function Result() {
@@ -9,10 +11,13 @@ function Result() {
 
 
   useEffect(() => {
-    getResults( searchkey, page);
+   searchkey? getResults(searchkey, page): null
   }, [page]);
 
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    getResults(searchkey, 1);
+  };
 
   const handlePrevPage = () => {
     setPage(page - 1);
@@ -29,12 +34,34 @@ function Result() {
 
   return (
     <>
+    <div className=''>
+      <BiSearch className='relative top-14 left-80 opacity-60 md:left-96 md:w-24' />
+      <div className='flex justify-center   mb-2 pt-7 md:justify-start md:ml-20 '>
+        <form onSubmit={handleSubmit}>
+          <input
+            type='text'
+            // value={searchKey}
+            onChange={(e) => setsearchkey(e.target.value)}
+            onKeyDown={(e) => e.keyCode === 13 ? handleSubmit(e) : null}
+            className='px-10 p-2 w-80 md:w-96 rounded-3xl focus:outline dark:bg-gray-700 text-black '
+            placeholder='Google Search'
+          />
+        </form>
+      </div>
+      {results?.searchInformation?.formattedTotalResults &&
+      results?.searchInformation?.formattedSearchTime ? (
+        <p className='opacity-60 flex flex-col justify-center ml-20 text-sm mt-3 md:justify-start'>
+          About {results.searchInformation.formattedTotalResults} results (
+          {results.searchInformation.formattedSearchTime} seconds)
+        </p>
+      ) : null}
+    </div>
       <div className="-ml-12 overflow-x-hidden">
         <div className="mx-6 flex flex-wrap md:px-20 lg: lg:w-1/2 ml-20 ">
-          <Searchpage results={results}
+          {/* <Searchpage results={results}
                       getResults={getResults} 
                       searchkey={searchkey}
-                      setsearchkey={setsearchkey}/>
+                      setsearchkey={setsearchkey}/> */}
 
           {results?.items &&
             results.items.map((item) => (
